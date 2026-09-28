@@ -61,6 +61,47 @@ class TestSigma:
 
 
 class TestBands:
+    def test_vm_one_matches_original_band_formula(self):
+        d0 = make_day(DATES[0], 100.0, 100.1)
+        d1 = make_day(DATES[1], 100.1, 100.1 * 1.003)
+        d2 = make_day(DATES[2], 105.0, 105.5)
+        bars = stack_days(d0, d1, d2)
+        ind = build_indicators(bars, lookback=2, min_obs=2, vm=1.0)
+
+        day3 = ind[ind.index.normalize() == ind.index.normalize().unique()[2]]
+        upper_anchor = np.maximum(day3["day_open"], day3["prev_close"])
+        lower_anchor = np.minimum(day3["day_open"], day3["prev_close"])
+        np.testing.assert_array_equal(
+            day3["upper"].to_numpy(), (upper_anchor * (1.0 + day3["sigma"])).to_numpy()
+        )
+        np.testing.assert_array_equal(
+            day3["lower"].to_numpy(), (lower_anchor * (1.0 - day3["sigma"])).to_numpy()
+        )
+
+    def test_vm_one_point_five_matches_formula_and_widens_bands(self):
+        d0 = make_day(DATES[0], 100.0, 100.1)
+        d1 = make_day(DATES[1], 100.1, 100.1 * 1.003)
+        d2 = make_day(DATES[2], 105.0, 105.5)
+        bars = stack_days(d0, d1, d2)
+        base = build_indicators(bars, lookback=2, min_obs=2, vm=1.0)
+        wider = build_indicators(bars, lookback=2, min_obs=2, vm=1.5)
+
+        day3_mask = wider.index.normalize() == wider.index.normalize().unique()[2]
+        base_day3 = base[day3_mask]
+        wider_day3 = wider[day3_mask]
+        upper_anchor = np.maximum(wider_day3["day_open"], wider_day3["prev_close"])
+        lower_anchor = np.minimum(wider_day3["day_open"], wider_day3["prev_close"])
+        np.testing.assert_array_equal(
+            wider_day3["upper"].to_numpy(),
+            (upper_anchor * (1.0 + 1.5 * wider_day3["sigma"])).to_numpy(),
+        )
+        np.testing.assert_array_equal(
+            wider_day3["lower"].to_numpy(),
+            (lower_anchor * (1.0 - 1.5 * wider_day3["sigma"])).to_numpy(),
+        )
+        assert (wider_day3["upper"] > base_day3["upper"]).all()
+        assert (wider_day3["lower"] < base_day3["lower"]).all()
+
     def test_gap_up_anchoring(self):
         # 2 "historical" days with moves 0.001 and 0.003 (sigma=0.002), then a
         # gap up: prev close 100.4003, open 105 -> upper anchored to 105,

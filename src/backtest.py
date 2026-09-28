@@ -101,6 +101,7 @@ def run_backtest(
     max_leverage: float = MAX_LEVERAGE,
     vol_lookback: int = VOL_LOOKBACK,
     check_interval_min: int = 30,
+    vm: float = 1.0,
 ) -> BacktestResult:
     """Run the backtest on 1-minute RTH bars (see noise_area for the format).
 
@@ -112,7 +113,7 @@ def run_backtest(
     if costs is None:
         costs = CostModel()
 
-    ind = build_indicators(bars, lookback=lookback)
+    ind = build_indicators(bars, lookback=lookback, vm=vm)
     closes_d = session_closes(ind)
     sigma_d = daily_sigma(closes_d, lookback=vol_lookback)
 

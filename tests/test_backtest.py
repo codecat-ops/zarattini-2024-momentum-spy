@@ -36,6 +36,26 @@ def _run(day3_closes, exit_mode="final", costs=NO_COSTS, **overrides):
 
 
 class TestEntriesAndExits:
+    def test_vm_is_forwarded_to_indicators(self, monkeypatch):
+        from src import backtest as backtest_module
+
+        original_build_indicators = backtest_module.build_indicators
+        received_vms = []
+
+        def recording_build_indicators(bars, **kwargs):
+            received_vms.append(kwargs["vm"])
+            return original_build_indicators(bars, **kwargs)
+
+        monkeypatch.setattr(
+            backtest_module, "build_indicators", recording_build_indicators
+        )
+        bars = stack_days(*_history(), make_day(D[3], O3, O3))
+
+        run_backtest(bars, **KW)
+        run_backtest(bars, vm=1.5, **KW)
+
+        assert received_vms == [1.0, 1.5]
+
     def test_no_trade_inside_noise_area(self):
         res = _run(np.full(BARS_PER_DAY, O3))
         assert res.trades.empty

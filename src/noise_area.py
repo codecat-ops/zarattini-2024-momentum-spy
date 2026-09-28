@@ -11,9 +11,12 @@ Input data conventions:
 Definitions (spec):
     sigma_t   = mean over the last `lookback` days of |P_{d,t} / O_d - 1|
                 (the current day is ALWAYS excluded)
-    Upper_t   = max(O_D, C_{D-1}) * (1 + sigma_t)
-    Lower_t   = min(O_D, C_{D-1}) * (1 - sigma_t)
+    Upper_t   = max(O_D, C_{D-1}) * (1 + VM * sigma_t)
+    Lower_t   = min(O_D, C_{D-1}) * (1 - VM * sigma_t)
     VWAP_t    = session VWAP from 09:30, typical price (H+L+C)/3
+
+VM scales only the Noise Area boundary width; VM=1.0 preserves the paper's
+original formula.
 
 Anchoring to max/min(Open, previous Close) handles overnight gaps: with a
 gap the Noise Area widens until it covers both reference levels.
@@ -104,6 +107,7 @@ def build_indicators(
     df: pd.DataFrame,
     lookback: int = DEFAULT_LOOKBACK,
     min_obs: int | None = None,
+    vm: float = 1.0,
 ) -> pd.DataFrame:
     """DataFrame enriched with sigma, bands, vwap, day open and previous close.
 
@@ -123,7 +127,7 @@ def build_indicators(
     out["day_open"] = opens.reindex(days).to_numpy()
     out["prev_close"] = prev_close.reindex(days).to_numpy()
     out["sigma"] = compute_sigma(df, lookback=lookback, min_obs=min_obs)
-    out["upper"] = upper_anchor.reindex(days).to_numpy() * (1.0 + out["sigma"])
-    out["lower"] = lower_anchor.reindex(days).to_numpy() * (1.0 - out["sigma"])
+    out["upper"] = upper_anchor.reindex(days).to_numpy() * (1.0 + vm * out["sigma"])
+    out["lower"] = lower_anchor.reindex(days).to_numpy() * (1.0 - vm * out["sigma"])
     out["vwap"] = compute_vwap(df)
     return out
