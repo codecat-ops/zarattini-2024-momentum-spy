@@ -176,6 +176,8 @@ def run_backtest(
         times = day_bars.index.time
 
         for t in grid:
+            if t > times[-1]:
+                break  # no scheduled checks after the day's last RTH bar
             # last bar available <= check time: if the exact minute is
             # missing (sparse feed) the last traded price is used
             pos = np.searchsorted(times, t, side="right") - 1

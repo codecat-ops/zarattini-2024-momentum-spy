@@ -177,6 +177,34 @@ class TestFlip:
         assert second["entry_time"] == first["exit_time"]
 
 
+class TestEarlyClose:
+    def test_no_entry_after_last_bar(self):
+        path = np.full(BARS_PER_DAY, O3)
+        path[224] = 1.005 * O3  # last bar is 13:14; next check is 13:30
+        day3 = make_day(D[3], O3, path).iloc[:225]
+        bars = stack_days(*_history(), day3)
+
+        res = run_backtest(bars, exit_mode="final", costs=NO_COSTS, **KW)
+
+        assert res.trades.empty
+
+    def test_open_position_closes_at_last_bar_without_post_close_flip(self):
+        path = path_step(O3, 1.005 * O3, 30)  # long from 10:00
+        path[224] = 0.995 * O3  # opposite signal appears after the 13:00 check
+        day3 = make_day(D[3], O3, path).iloc[:225]
+        bars = stack_days(*_history(), day3)
+
+        res = run_backtest(bars, exit_mode="final", costs=NO_COSTS, **KW)
+
+        assert len(res.trades) == 1
+        tr = res.trades.iloc[0]
+        assert tr["side"] == "long"
+        assert tr["entry_time"].time() == pd.Timestamp("10:00").time()
+        assert tr["exit_reason"] == "eod"
+        assert tr["exit_time"] == day3.index[-1]
+        assert (res.trades["entry_time"] <= res.trades["exit_time"]).all()
+
+
 class TestCosts:
     def test_commissions_reduce_pnl(self):
         path = path_step(O3, 1.005 * O3, 30)
