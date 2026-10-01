@@ -1,0 +1,34 @@
+{
+  "checks": {
+    "all_trades_assigned_once": true,
+    "all_trades_intraday": true,
+    "daily_dates_match_cleaned_input": true,
+    "max_compounded_net_equity_error": 1.1641532182693481e-09,
+    "max_daily_gross_minus_costs_minus_net_error": 7.275957614183426e-12,
+    "max_daily_net_equity_delta_error": 1.2369127944111824e-10,
+    "max_trade_gross_minus_costs_minus_net_error": 3.637978807091713e-12,
+    "no_trade_sessions": 728,
+    "session_count": 1760,
+    "totals": {
+      "costs": 12589.15,
+      "gross_pnl": 251446.66799999864,
+      "net_pnl": 238857.51799999864
+    },
+    "trade_count": 1509,
+    "trade_totals": {
+      "costs": 12589.15,
+      "gross_pnl": 251446.66799999864,
+      "net_pnl": 238857.51799999864
+    }
+  },
+  "gross_return_semantics": "pre-cost gross P&L / prior-session realized net equity; actual net-equity sizing path",
+  "input_sha256": {
+    "cleaned_parquet": "22937752eb5ea4ddcd79a7ae3eedc9bdabde5d5bffe3bc4309353de1de7e5f90",
+    "gross_trade_ledger": "b695520fe07181bd13acaec5d119e333c5b1f005e28f3c4b304cf971936c9b0a",
+    "manifest": "fbcf25fdc83b14ba4cf54da7521033f0cecd980cae2bcf44737dfe33879ebac8",
+    "net_daily_equity": "92dcda900e99293b02ba145eb4e03cc251e6ef7e24fd5fb2ae7fb522e967df32",
+    "source_csv": "1767b1c7055bf43fc3958a1e57ae346a645a9915149bddd443772977e66a1993"
+  },
+  "ledger_sha256": "6415ac0285bf3a4dab438214903b003ff97355972f70e6469d8ed53149f41371",
+  "verdict": "NOISE_AREA_GROSS_DAILY_LEDGER_READY"
+}

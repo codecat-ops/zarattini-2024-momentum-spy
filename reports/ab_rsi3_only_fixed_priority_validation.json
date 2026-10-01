@@ -1,0 +1,129 @@
+{
+  "alignment": "position_(t-1) earns execution_(t-1) to execution_t return on date t; position_t is set at execution_t",
+  "b_strategy": "RSI3_ONLY",
+  "combined_daily_sha256": "f65191adbcf9c3c970eb8f8691675683ee08dea0c5be9bb8102c4975c17371c4",
+  "contribution": {
+    "a_trade_days_on_b_entry_sessions": 85,
+    "b_arithmetic_return_sum": 0.6505689967750766,
+    "b_gain_on_combined_capital": 1.965089123385268,
+    "b_priority_sessions": 318,
+    "raw_a_trade_day_b_carry_overlap_sessions": 243,
+    "realized_double_count_sessions": 0,
+    "retained_a_arithmetic_gross_return_sum": 1.2319596262211898,
+    "retained_a_gain_on_combined_capital": 2.9768880917234886,
+    "retained_a_gross_pnl_baseline_usd": 240535.02099999838,
+    "suppressed_a_active_sessions": 243,
+    "suppressed_a_arithmetic_gross_return_sum": 0.12187148379062829,
+    "suppressed_a_counterfactual_gain_on_combined_capital": 0.11694496265067361,
+    "suppressed_a_gross_pnl_baseline_usd": 10911.647000000254,
+    "suppressed_a_sessions": 318,
+    "suppressed_a_trades": 374
+  },
+  "control_comparison": {
+    "delta": {
+      "a_trade_days_on_b_entry_sessions": -2,
+      "annualized_volatility": 0.019144425394201164,
+      "b_arithmetic_return_sum": 0.24204359826727628,
+      "b_gain_on_combined_capital": 0.5160770515482065,
+      "b_priority_sessions": 142,
+      "cagr": 0.01858082528148075,
+      "calmar": -0.8617923846156237,
+      "compounded_return": 0.5733980444037758,
+      "max_drawdown": -0.08051139736253343,
+      "raw_a_trade_day_b_carry_overlap_sessions": 111,
+      "realized_double_count_sessions": 0,
+      "retained_a_arithmetic_gross_return_sum": -0.1186721926144787,
+      "retained_a_gain_on_combined_capital": 0.057320992855571795,
+      "retained_a_gross_pnl_baseline_usd": -5241.84600000002,
+      "sharpe_rf_0": -0.08485108271813879,
+      "suppressed_a_active_sessions": 111,
+      "suppressed_a_arithmetic_gross_return_sum": 0.1186721926144787,
+      "suppressed_a_counterfactual_gain_on_combined_capital": 0.008600523551364953,
+      "suppressed_a_gross_pnl_baseline_usd": 5241.846000000036,
+      "suppressed_a_sessions": 142,
+      "suppressed_a_trades": 160
+    },
+    "delta_convention": "RSI3_ONLY minus RSI3_IBS; positive MDD means shallower drawdown",
+    "verdict": "RSI3_IBS_COMBINATION_PREFERRED"
+  },
+  "input_sha256": {
+    "a_daily": "6415ac0285bf3a4dab438214903b003ff97355972f70e6469d8ed53149f41371",
+    "a_manifest": "fbcf25fdc83b14ba4cf54da7521033f0cecd980cae2bcf44737dfe33879ebac8",
+    "a_trades": "b695520fe07181bd13acaec5d119e333c5b1f005e28f3c4b304cf971936c9b0a",
+    "b_daily": "f1e4c90460194d28bdf2942f6c3217adfc6a98fc21526c5ac39638f70f8833ab",
+    "b_summary": "2da69a1ab414d03c890cc869c99997b6bddcd4ce804c82d78997cf8b2657421b"
+  },
+  "metrics": {
+    "A": {
+      "annualized_volatility": 0.14321879434317872,
+      "cagr": 0.2012636465917399,
+      "calmar": 1.4560375349352286,
+      "compounded_return": 2.6065069574825057,
+      "max_drawdown": -0.13822696308491322,
+      "sharpe_rf_0": 1.3542510393466398,
+      "yearly_returns": {
+        "2019": 0.14229714943010752,
+        "2020": 0.25011929696357993,
+        "2021": 0.34522008467950105,
+        "2022": 0.23585665390758082,
+        "2023": 0.25359876699828354,
+        "2024": 0.20656097825767827,
+        "2025": 0.004354309414218438
+      }
+    },
+    "AB": {
+      "annualized_volatility": 0.16960934639972886,
+      "cagr": 0.2901413531437331,
+      "calmar": 1.4748062966888495,
+      "compounded_return": 4.941977215108763,
+      "max_drawdown": -0.1967318377980497,
+      "sharpe_rf_0": 1.5901075839152012,
+      "yearly_returns": {
+        "2019": 0.09747578584998395,
+        "2020": 0.19836497812949783,
+        "2021": 0.524528305617286,
+        "2022": 0.5053742064834443,
+        "2023": 0.28668232582489983,
+        "2024": 0.28936156209137986,
+        "2025": 0.18664526218815625
+      }
+    },
+    "B": {
+      "annualized_volatility": 0.11760851336548712,
+      "cagr": 0.08989890377458343,
+      "calmar": 0.5247260484660168,
+      "compounded_return": 0.82609927513094,
+      "max_drawdown": -0.17132540691927478,
+      "sharpe_rf_0": 0.792481812507193,
+      "yearly_returns": {
+        "2019": 0.046767762922575784,
+        "2020": 0.016406314472076744,
+        "2021": 0.17616790984396502,
+        "2022": 0.07571377936991652,
+        "2023": 0.041177301054069915,
+        "2024": 0.1484121992249261,
+        "2025": 0.13453564159319464
+      }
+    }
+  },
+  "metrics_convention": "calendar-day CAGR from first to last session; sample daily std and Sharpe on sessions 2..1760, annualized by 252; RF=0",
+  "next_step": "SEARCH_STRATEGY_C",
+  "target_met": false,
+  "validation": {
+    "a_net_cagr_252_session_convention": 0.1909370756148685,
+    "a_net_equity_max_rebuild_error_usd": 4.3655745685100555e-09,
+    "a_net_max_drawdown": -0.1407865458512736,
+    "a_net_sharpe": 1.291193699782641,
+    "a_trade_counts_match_authoritative_trade_ledger": true,
+    "b_equity_max_rebuild_error_normalized": 2.6645352591003757e-15,
+    "b_published_metrics_match": true,
+    "b_return_matches_prior_position_and_execution_prices": true,
+    "combined_equity_max_rebuild_error_normalized": 0.0,
+    "dates_unique_sorted_and_matched": true,
+    "normalized_component_gain_identity_error": 6.217248937900877e-15,
+    "one_selected_source_per_session": true,
+    "serialized_combined_ledger_rebuilds_all_metrics": true,
+    "sessions": 1760
+  },
+  "verdict": "RSI3_IBS_COMBINATION_PREFERRED"
+}

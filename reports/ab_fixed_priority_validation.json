@@ -1,0 +1,98 @@
+{
+  "alignment": "position_(t-1) earns execution_(t-1) to execution_t return on date t; position_t is set at execution_t",
+  "combined_daily_sha256": "d4acd977d2b371fef28a8d89a5e70e077ba4cc9b543b16c828bb1a3c382ca88e",
+  "contribution": {
+    "a_trade_days_on_b_entry_sessions": 87,
+    "b_arithmetic_return_sum": 0.40852539850780034,
+    "b_gain_on_combined_capital": 1.4490120718370616,
+    "b_priority_sessions": 176,
+    "raw_a_trade_day_b_carry_overlap_sessions": 132,
+    "realized_double_count_sessions": 0,
+    "retained_a_arithmetic_gross_return_sum": 1.3506318188356685,
+    "retained_a_gain_on_combined_capital": 2.9195670988679168,
+    "retained_a_gross_pnl_baseline_usd": 245776.8669999984,
+    "suppressed_a_active_sessions": 132,
+    "suppressed_a_arithmetic_gross_return_sum": 0.003199291176149588,
+    "suppressed_a_counterfactual_gain_on_combined_capital": 0.10834443909930866,
+    "suppressed_a_gross_pnl_baseline_usd": 5669.801000000218,
+    "suppressed_a_sessions": 176,
+    "suppressed_a_trades": 214
+  },
+  "input_sha256": {
+    "a_daily": "6415ac0285bf3a4dab438214903b003ff97355972f70e6469d8ed53149f41371",
+    "a_manifest": "fbcf25fdc83b14ba4cf54da7521033f0cecd980cae2bcf44737dfe33879ebac8",
+    "a_trades": "b695520fe07181bd13acaec5d119e333c5b1f005e28f3c4b304cf971936c9b0a",
+    "b_daily": "b15a7850244e31ff79b7a716d7e9373938dada063acde2e17e0f1fb0118c4895",
+    "b_summary": "2da69a1ab414d03c890cc869c99997b6bddcd4ce804c82d78997cf8b2657421b"
+  },
+  "metrics": {
+    "A": {
+      "annualized_volatility": 0.14321879434317872,
+      "cagr": 0.2012636465917399,
+      "calmar": 1.4560375349352286,
+      "compounded_return": 2.6065069574825057,
+      "max_drawdown": -0.13822696308491322,
+      "sharpe_rf_0": 1.3542510393466398,
+      "yearly_returns": {
+        "2019": 0.14229714943010752,
+        "2020": 0.25011929696357993,
+        "2021": 0.34522008467950105,
+        "2022": 0.23585665390758082,
+        "2023": 0.25359876699828354,
+        "2024": 0.20656097825767827,
+        "2025": 0.004354309414218438
+      }
+    },
+    "AB": {
+      "annualized_volatility": 0.1504649210055277,
+      "cagr": 0.2715605278622524,
+      "calmar": 2.3365986813044732,
+      "compounded_return": 4.3685791707049875,
+      "max_drawdown": -0.11622044043551627,
+      "sharpe_rf_0": 1.67495866663334,
+      "yearly_returns": {
+        "2019": 0.16382779699422323,
+        "2020": 0.1960127563869678,
+        "2021": 0.48454079864875266,
+        "2022": 0.35922755859590816,
+        "2023": 0.3884261410908658,
+        "2024": 0.18059922278457363,
+        "2025": 0.1660716609341566
+      }
+    },
+    "B": {
+      "annualized_volatility": 0.07199278226744943,
+      "cagr": 0.057440596009781686,
+      "calmar": 0.6263898936739444,
+      "compounded_return": 0.47800410060737586,
+      "max_drawdown": -0.09170102613386244,
+      "sharpe_rf_0": 0.8129518164784563,
+      "yearly_returns": {
+        "2019": 0.005449007157783292,
+        "2020": -0.010230997983714296,
+        "2021": 0.0824454095872107,
+        "2022": 0.02769425167084738,
+        "2023": 0.08476543417704052,
+        "2024": 0.09368658443877154,
+        "2025": 0.1253382682951416
+      }
+    }
+  },
+  "metrics_convention": "calendar-day CAGR from first to last session; sample daily std and Sharpe on sessions 2..1760, annualized by 252; RF=0",
+  "validation": {
+    "a_net_cagr_252_session_convention": 0.1909370756148685,
+    "a_net_equity_max_rebuild_error_usd": 4.3655745685100555e-09,
+    "a_net_max_drawdown": -0.1407865458512736,
+    "a_net_sharpe": 1.291193699782641,
+    "a_trade_counts_match_authoritative_trade_ledger": true,
+    "b_equity_max_rebuild_error_normalized": 1.7763568394002505e-15,
+    "b_published_metrics_match": true,
+    "b_return_matches_prior_position_and_execution_prices": true,
+    "combined_equity_max_rebuild_error_normalized": 0.0,
+    "dates_unique_sorted_and_matched": true,
+    "normalized_component_gain_identity_error": 8.881784197001252e-15,
+    "one_selected_source_per_session": true,
+    "sessions": 1760
+  },
+  "verdict": "AB_STRUCTURAL_INCREMENTAL_BUT_TARGET_NOT_MET"
+}
